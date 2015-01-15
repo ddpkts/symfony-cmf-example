@@ -1,0 +1,24 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
+    database_user: root
+    database_password: ~
+
+    locale:            en
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            C(21dK%Ak*klqGNH}041XL`s{(ECeD8t~Kx
+
+    debug_toolbar: true
+    debug_toolbar_position: bottom
+    debug_redirects: false
+    use_assetic_controller: true
+
+    phpcr_backend:
+        type: doctrinedbal
+        connection: default
+    phpcr_workspace: default
+    phpcr_user: admin
+    phpcr_pass: admin

@@ -1,0 +1,9 @@
+ddpkts_test_cms_index:
+    path:     /
+    defaults: { _controller: DdpktsTestCmsBundle:Default:index }
+
+ddpkts_test_cms_make_homepage:
+    path: /_cms/make_homepage/{id}
+    defaults: { _controller: DdpktsTestCmsBundle:Default:makeHomepage }
+    requirements:
+        id: .+

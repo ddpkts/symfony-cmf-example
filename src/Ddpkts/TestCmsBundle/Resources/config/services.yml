@@ -1,0 +1,45 @@
+services:
+#    ddpkts.test_cms.phpcr.initializer:
+#        class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
+#        arguments:
+#            - My custom initializer
+#            - ["/cms/pages", "/cms/posts", "/cms/routes"]
+#        tags:
+#            - { name: doctrine_phpcr.initializer }
+    ddpkts.test_cms.phpcr.initializer.site:
+        class: Ddpkts\TestCmsBundle\Initializer\SiteInitializer
+        tags:
+            - { name: doctrine_phpcr.initializer, priority: 50 }
+
+    ddpkts.test_cms.admin.page:
+        class: Ddpkts\TestCmsBundle\Admin\PageAdmin
+        arguments:
+            - ''
+            - Ddpkts\TestCmsBundle\Document\Page
+            - 'SonataAdminBundle:CRUD'
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: 'Basic CMS', label: Page }
+        calls:
+            - [setRouteBuilder, ['@sonata.admin.route.path_info_slashes']]
+
+    ddpkts.test_cms.admin.post:
+        class: Ddpkts\TestCmsBundle\Admin\PostAdmin
+        arguments:
+            - ''
+            - Ddpkts\TestCmsBundle\Document\Post
+            - 'SonataAdminBundle:CRUD'
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: 'Basic CMS', label: 'Blog Posts' }
+        calls:
+            - [setRouteBuilder, ['@sonata.admin.route.path_info_slashes']]
+
+    ddpkts.test_cms.menu_provider:
+        class: Symfony\Cmf\Bundle\MenuBundle\Provider\PhpcrMenuProvider
+        arguments:
+            - '@cmf_menu.factory'
+            - '@doctrine_phpcr'
+            - /cms/pages
+        calls:
+            - [setRequest, ["@?request="]]
+        tags:
+            - { name: knp_menu.provider }

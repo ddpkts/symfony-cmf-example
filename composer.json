@@ -1,0 +1,65 @@
+{
+    "name": "ddpkts/api",
+    "type": "project",
+    "description": "api",
+    "autoload": {
+        "psr-4": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "~2.6",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "sensio/distribution-bundle": "~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
+        "incenteev/composer-parameter-handler": "~2.0",
+
+        "symfony/monolog-bundle": "~2.7",
+
+        "symfony/security-bundle": "~2.6",
+
+        "doctrine/doctrine-bundle": "~1.2",
+        "doctrine/phpcr-bundle": "~1.2",
+        "doctrine/phpcr-odm": "~1.2",
+        "jackalope/jackalope-doctrine-dbal": "~1.1,>=1.1.2",
+
+        "symfony-cmf/routing-auto-bundle": "~1.0",
+        "symfony-cmf/menu-bundle": "~1.2",
+        "sonata-project/doctrine-phpcr-admin-bundle": "~1.2",
+        "symfony-cmf/tree-browser-bundle": "~1.1",
+        "doctrine/data-fixtures": "~1.0",
+        "symfony-cmf/routing-bundle": "~1.3",
+        "symfony-cmf/routing": "~1.3",
+        "doctrine/data-fixtures": "1.0.*"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3",
+        "phpunit/phpunit": "~4.3",
+        "symfony/web-profiler-bundle": "~2"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
+    }
+}
